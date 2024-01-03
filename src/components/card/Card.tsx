@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import useFavoriteStore from "../../store/useFaVoriteStore";
 import Icons from "../ui/Icons";
 

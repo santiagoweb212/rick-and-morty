@@ -10,7 +10,7 @@
   @apply text-center font-bold text-lg;
 }
 .card_btn {
-  @apply bg-blue-400 mt-2 w-full py-1 rounded-md font-bold text-white;
+  @apply bg-blue-400 mt-2 flex justify-center items-center w-full py-1 rounded-md font-bold text-white;
 }
 @layer utilities {
   .card--shadown {

@@ -1,21 +1,24 @@
 import ChipsFilters from "../../components/chipsFilter/ChipsFilters";
-import MainNavbar from "../../components/navbar/MainNavbar";
+import Filters from "../../components/filters/Filters";
 import Pagination from "../../components/pagination/Pagination";
 import Loader from "../../components/ui/Loader";
+import usePageNumberStore from "../../store/usePageNumberStore";
 import Characters from "./components/Characters";
-import Filters from "./components/filters/Filters";
 import useCharacterData from "./hooks/useCharacterData";
 
 const Home = () => {
-  const { isError,isFetching } = useCharacterData();
+  const { isError, isFetching, characters } = useCharacterData();
+  const { currentPage, setCurrentPage } = usePageNumberStore();
 
   return (
-    <div className="container mx-auto min-h-screen  ">
-      <MainNavbar />
-
+    <div className="">
       <Filters />
       <ChipsFilters />
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={characters?.info?.pages}
+        setCurrentPage={setCurrentPage}
+      />
       {isError && (
         <div className="w-full h-[calc(100vh-12.5rem)]  flex justify-center items-center ">
           <span className="mr-2" role="img" aria-label="No hay resultados">
@@ -24,14 +27,13 @@ const Home = () => {
           Parece que no hay resultados para tu búsqueda.
         </div>
       )}
-      { isFetching ? (
+      {isFetching ? (
         <div className="w-full h-[calc(100vh-12.5rem)]  flex justify-center items-center ">
           <Loader text="obteniendo personajes..." />
         </div>
       ) : (
         <Characters />
       )}
-      
     </div>
   );
 };

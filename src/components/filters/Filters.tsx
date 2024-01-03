@@ -1,41 +1,19 @@
-import { useState } from "react";
 import DropDown from "./components/DropDown";
-import useCharacterData from "../../hooks/useCharacterData";
-import usePageNumberStore from "../../../../store/usePageNumberStore";
-type IsVisibleType = {
-  [key: string]: boolean;
-};
+import useCharacterData from "../../page/home/hooks/useCharacterData";
+import usePageNumberStore from "../../store/usePageNumberStore";
+import useDropDown from "../../hooks/useDropDown";
+import { genders, species, status } from "../../constants/filterOptions";
 
 const Filters = () => {
-  const status: string[] = ["All", "Alive", "Dead", "unknown"];
-  const genders: string[] = ["All", "Male", "Female", "Genderless", "unknown"];
-  const species: string[] = [
-    "All",
-    "todos",
-    "Human",
-    "Alien",
-    "Humanoid",
-    "Poopybutthole",
-    "Mythological",
-    "Unknown",
-    "Animal",
-    "Disease",
-    "Robot",
-    "Cronenberg",
-    "Planet",
-  ];
   const { setCurrentPage } = usePageNumberStore();
-  const [isVisible, setIsVisible] = useState<IsVisibleType>({
+  const { handleDropDown, isVisible, setIsVisible } = useDropDown({
     gender: true,
     status: true,
     specie: true,
   });
+
   const { setFilters, filters } = useCharacterData();
-  const handleDropDown = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { name } = e.currentTarget;
-    setIsVisible({ ...isVisible, [name]: !isVisible[name] });
-    console.log(name);
-  };
+
   const handleSelectionOption = (e: React.MouseEvent<HTMLLIElement>) => {
     const { textContent, dataset } = e.currentTarget;
     if (dataset.name && textContent) {
@@ -44,6 +22,7 @@ const Filters = () => {
       setCurrentPage(1);
     }
   };
+
   return (
     <div className=" flex justify-end gap-4 py-2">
       <DropDown
@@ -54,7 +33,7 @@ const Filters = () => {
         valueSelected={filters.status}
         textBtn="status"
         nameBtn="status"
-        name="status"
+        nameLi="status"
       />
       <DropDown
         data={genders}
@@ -62,9 +41,9 @@ const Filters = () => {
         isVisble={isVisible.gender}
         onSelectClick={handleSelectionOption}
         valueSelected={filters.gender}
-        textBtn="gender"
+        textBtn="genders"
         nameBtn="gender"
-        name="gender"
+        nameLi="gender"
       />
       <DropDown
         data={species}
@@ -72,9 +51,9 @@ const Filters = () => {
         isVisble={isVisible.specie}
         onSelectClick={handleSelectionOption}
         valueSelected={filters.specie}
-        textBtn="specie"
+        textBtn="species"
         nameBtn="specie"
-        name="specie"
+        nameLi="specie"
       />
     </div>
   );

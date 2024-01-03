@@ -11,20 +11,20 @@ const useCharacterData = () => {
   const page = usePageNumberStore((state) => state.currentPage);
   const debouncedName = useDebounce(filters.name, 500);
 
-  const { isError, isLoading,isFetching } = useQuery({
+  const { isError, isLoading, isFetching } = useQuery({
     queryKey: ["character", page, { ...filters, name: debouncedName }],
     queryFn: async () => {
       let { gender, specie, status } = filters;
       gender = gender === "All" ? "" : gender;
       specie = specie === "All" ? "" : specie;
       status = status === "All" ? "" : status;
-      const res = await getCharacters(
+      const res = await getCharacters({
         gender,
         status,
-        specie,
-        String(page),
-        debouncedName
-      );
+        species: specie,
+        page: String(page),
+        name: debouncedName,
+      });
       setCharacters(res);
       return res;
     },
@@ -37,7 +37,7 @@ const useCharacterData = () => {
     isLoading,
     setFilters,
     filters,
-    isFetching
+    isFetching,
   };
 };
 

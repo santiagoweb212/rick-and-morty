@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import useFavoriteStore from "../../store/useFaVoriteStore";
-import Button from "../ui/Button";
 import Icons from "../ui/Icons";
 
 interface ICardProps {
@@ -13,25 +13,24 @@ interface ICardProps {
 }
 const Card = ({ image, title, status, gender, specie, id }: ICardProps) => {
   const { setFavorites, deleteFavorite, favorites } = useFavoriteStore();
-  const [heartActive, setHeartActive] = useState(favorites.some((item) => item.id === id));
+  const [heartActive, setHeartActive] = useState(
+    favorites.some((item) => item.id === id)
+  );
 
   useEffect(() => {
     setHeartActive(favorites.some((item) => item.id === id));
-    console.log("aca favorites")
+    console.log("aca favorites");
   }, [favorites]);
-
-   
 
   const toggleFavorite = () => {
     const isFavorite = favorites.some((item) => item.id === id);
-    console.log(isFavorite)
-     if (isFavorite) {
+    console.log(isFavorite);
+    if (isFavorite) {
       deleteFavorite(id);
       setHeartActive(false);
-      
-      return
+
+      return;
     } else {
-      
       setFavorites({ id, image, title, gender, specie, status });
       setHeartActive(true);
     }
@@ -78,8 +77,7 @@ const Card = ({ image, title, status, gender, specie, id }: ICardProps) => {
             <p className="font-medium">{specie}</p>
           </div>
         </div>
-
-        <Button btnText={"ver mas"} btnStyle="card_btn" />
+        
         <div
           className={`absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-amber-500 top-0 right-0 m-2 p-1 bg-white rounded-full cursor-pointer ${
             heartActive ? "opacity-100" : ""

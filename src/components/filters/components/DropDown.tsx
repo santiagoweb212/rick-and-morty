@@ -4,7 +4,7 @@ interface IDropDownProps {
   isVisble?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onSelectClick?: React.MouseEventHandler<HTMLLIElement>;
-  name: string;
+  nameLi: string;
   nameBtn: string;
   textBtn: string;
 }
@@ -14,7 +14,7 @@ const DropDown = ({
   isVisble,
   onClick,
   onSelectClick,
-  name,
+  nameLi,
   nameBtn,
   textBtn,
 }: IDropDownProps) => {
@@ -50,7 +50,7 @@ const DropDown = ({
         {data.map((item, i) => (
           <li
             key={i}
-            data-name={name}
+            data-name={nameLi}
             className="cursor-pointer"
             onClick={onSelectClick}
           >

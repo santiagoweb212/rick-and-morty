@@ -1,17 +1,21 @@
 import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/minimal.css";
-import useCharacterData from "../../page/home/hooks/useCharacterData";
-import usePageNumberStore from "../../store/usePageNumberStore";
-
-const Pagination = () => {
-  const { currentPage, setCurrentPage } = usePageNumberStore();
-  const { characters } = useCharacterData();
+interface IPaginationProps {
+  currentPage: number;
+  totalPages: number;
+  setCurrentPage: (page: number) => void;
+}
+const Pagination = ({
+  currentPage,
+  totalPages,
+  setCurrentPage,
+}: IPaginationProps) => {
   return (
     <div className=" flex justify-end  py-2">
       <ResponsivePagination
         current={currentPage}
         onPageChange={(page) => setCurrentPage(page)}
-        total={characters.info.pages}
+        total={totalPages}
         maxWidth={250}
         className="my-pagination"
         pageItemClassName="my-item"

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .card {
   @apply relative w-56  p-3 rounded-md bg-[rgba(183,203,206,0.31)];
 }
@@ -57,7 +56,7 @@
   cursor: pointer;
 }
 
-html{
+html {
   scroll-behavior: smooth;
-  
+  background-color: #ffffff;
 }

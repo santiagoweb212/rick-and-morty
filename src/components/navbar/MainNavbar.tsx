@@ -16,7 +16,7 @@ const MainNavbar = () => {
     setIsVisibleNav(!isVisibleNav);
   };
   return (
-    <div className="sticky top-0 h-14 shadow  w-full flex justify-between items-center py-2 bg-white z-50 ">
+    <div className="sticky top-0 h-14 px-4 shadow  w-full flex justify-between items-center py-2 bg-white z-50 ">
       <Logo />
       <div className={`${!isVisibleNav ? "hidden" : ""} shadow-md md:shadow-none absolute md:static left-0  top-14 bg-white  md:flex gap-4 items-center `}>
         <nav className={` flex flex-col     md:flex-row p-2  gap-4 text-[#6B6A6A] font-medium`}>

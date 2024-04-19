@@ -22,7 +22,7 @@ const DropDown = ({
     <div className="relative w-fit flex flex-col py-1">
       <button
         name={nameBtn}
-        className="flex gap-2 w-full justify-between bg-[#F9F9F9] shadow-md rounded-sm px-2"
+        className="flex gap-2 text-sm w-full justify-between bg-[#F9F9F9] shadow-md rounded-sm "
         onClick={onClick}
       >
         <span>{`${textBtn}:`}</span>
@@ -51,7 +51,7 @@ const DropDown = ({
           <li
             key={i}
             data-name={nameLi}
-            className="cursor-pointer"
+            className="cursor-pointer text-sm"
             onClick={onSelectClick}
           >
             {item}

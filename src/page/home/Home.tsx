@@ -12,6 +12,7 @@ const Home = () => {
 
   return (
     <div className="">
+      <div className="sticky top-14 z-40 shadow bg-white">
       <Filters />
       <ChipsFilters />
       <Pagination
@@ -19,6 +20,7 @@ const Home = () => {
         totalPages={characters?.info?.pages}
         setCurrentPage={setCurrentPage}
       />
+      </div>
       {isError && (
         <div className="w-full h-[calc(100vh-12.5rem)]  flex justify-center items-center ">
           <span className="mr-2" role="img" aria-label="No hay resultados">

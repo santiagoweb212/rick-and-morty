@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="">
-      <div className="sticky top-14 z-40 shadow bg-white">
+      <div className="sticky top-14 z-40 shadow bg-white px-1">
       <Filters />
       <ChipsFilters />
       <Pagination

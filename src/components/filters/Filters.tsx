@@ -24,7 +24,7 @@ const Filters = () => {
   };
 
   return (
-    <div className=" flex justify-end gap-4 py-2">
+    <div className=" flex justify-end gap-4 py-2 md:px-2">
       <DropDown
         data={status}
         onClick={handleDropDown}

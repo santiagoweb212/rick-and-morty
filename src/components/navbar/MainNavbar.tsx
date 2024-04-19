@@ -7,7 +7,7 @@ import useFavoriteStore from "../../store/useFaVoriteStore";
 
 const MainNavbar = () => {
   const [isVisibleFavorite, setIsVisibleFavorite] = useState(true);
-  const [isVisibleNav, setIsVisibleNav] = useState(true);
+  const [isVisibleNav, setIsVisibleNav] = useState(false);
   const { favorites } = useFavoriteStore();
   const handleFavoriteClick = () => {
     setIsVisibleFavorite(!isVisibleFavorite);
